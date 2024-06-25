@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Register</title>
+  <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+  <header>
+    <div class="logo"><a href="/">ProfileCard</a></div>
+    <nav>
+      <ul>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="register-container">
+    <h2>Register</h2>
+    <form action="/register" method="post">
+      <label for="uid">ID:</label>
+      <input type="text" id="uid" name="uid" required>
+      <label for="upw">Password:</label>
+      <input type="password" id="upw" name="upw" required>
+      <label for="upw_check">Password check:</label>
+      <input type="password" id="upw_check" name="upw_check" required>
+      <button type="submit">Register</button>
+    </form>
+    <% if (errorMessage) { %>
+      <p class="error-message"><%= errorMessage %></p>
+    <% } %>
+  </div>
+</body>
+</html>

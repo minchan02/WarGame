@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Index</title>
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+  <header>
+    <div class="logo"><a href="/">ProfileCard</a></div>
+    <nav>
+      <ul>
+        <% if (uid) { %>
+          <li><a href="/logout">Logout</a></li>
+        <% } else { %>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/register">Register</a></li>
+        <% } %>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container-wrapper">
+    <div class="container">
+      <% if (uid) { %>
+        <h2>안녕하세요, <%= uid %>님!</h2>
+        <h3>ProfileCard를 꾸며보세요!</h3>
+        <a href="/user" class="btn">Go to Profile</a>
+        <div class="image-container">
+            <img src="/images/user.png" alt="Profile Card Image" class="profile-card-image">
+          </div>
+      <% } else { %>
+        <h2>로그인 해주세요</h2>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

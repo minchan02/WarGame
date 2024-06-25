@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>User Page</title>
+  <link rel="stylesheet" href="/css/user.css">
+</head>
+<body>
+  <header>
+    <div class="logo"><a href="/">ProfileCard</a></div>
+    <nav>
+      <ul>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container-wrapper">
+    <div class="container">
+      <div class="profile-card">
+        <img src="<%= myInfo.profilePicture || 'https://via.placeholder.com/100' %>" alt="Profile Picture">
+        <h1><%= myInfo.uid %></h1>
+        <p>About me</p>
+        <ul>
+          <% Object.keys(myInfo).forEach(key => { %>
+            <% if (key !== 'uid' && key !== 'profilePicture') { %>
+              <li><strong><%= key %></strong>: <%= myInfo[key] %></li>
+            <% } %>
+          <% }) %>
+        </ul>
+      </div>
+
+      <div class="form-container">
+        <h2>프로필카드 필드 추가</h2>
+        <form id="addFieldForm">
+          <label for="fieldName">필드 이름:</label>
+          <input type="text" id="fieldName" name="fieldName" required>
+          <label for="fieldValue">필드 값:</label>
+          <input type="text" id="fieldValue" name="fieldValue" required>
+          <button type="submit">필드 추가</button>
+        </form>
+
+        <h2>프로필 사진 수정</h2>
+        <form id="profilePictureForm" action="/user/uploadProfilePicture" method="post" enctype="multipart/form-data">
+          <label for="profilePicture">프로필 사진:</label>
+          <input type="file" id="profilePicture" name="profilePicture" required>
+          <button type="submit">사진 변경</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('addFieldForm').addEventListener('submit', function(e) {
+
+      const fieldName = document.getElementById('fieldName').value;
+      const fieldValue = document.getElementById('fieldValue').value;
+
+      const formData = new URLSearchParams();
+      formData.append(fieldName, fieldValue);
+
+      fetch('/user/addField', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData.toString()
+      });
+    });
+  </script>
+</body>
+</html>
