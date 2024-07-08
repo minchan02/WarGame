@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Exhibition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>Photo Exhibition</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file">
+        <input type="submit" value="upload">
+    </form>
+    
+    {% if filename %}
+    <div class="uploaded-file">
+    	<p>upload success! : {{ filename }}</p>
+        <a href="/view/{{ filename }}" class="view-button">view file</a>
+    </div>
+    {% endif %}
+
+    <a href="/report" class="report-button">Report ADMIN</a>
+
+    <div class="gallery">
+	    <img src="{{ url_for('static', filename='images/image1.jpg') }}">
+	    <img src="{{ url_for('static', filename='images/image2.jpg') }}">
+	    <img src="{{ url_for('static', filename='images/image3.png') }}">
+	    <img src="{{ url_for('static', filename='images/image4.svg') }}">
+	    <img src="{{ url_for('static', filename='images/image5.svg') }}">
+	    <img src="{{ url_for('static', filename='images/image6.png') }}">
+</body>
+</html>
