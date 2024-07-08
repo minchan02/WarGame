@@ -1,0 +1,1 @@
+XSS with SVG Injection
