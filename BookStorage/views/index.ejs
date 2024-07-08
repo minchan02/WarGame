@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Storage</title>
+</head>
+<body>
+    <h1>Book Storage</h1>
+    <ul>
+        <% for (let publisher in book) { %>
+            <% for (let author in book[publisher]) { %>
+                <li>
+                    <strong>Publisher:</strong> <%= publisher %><br>
+                    <strong>Author:</strong> <%= author %><br>
+                    <strong>Title:</strong> <%= book[publisher][author] %>
+                </li>
+            <% } %>
+        <% } %>
+    </ul>
+</body>
+</html>
