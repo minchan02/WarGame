@@ -189,15 +189,20 @@ app.post(
   upload.single("profilePicture"),
   async (req, res) => {
     if (req.session.user) {
-      const uid = req.session.user.uid;
-      const profilePicturePath = `/images/${req.file.filename}`;
-
-      await User.updateOne(
-        { uid },
-        { $set: { profilePicture: profilePicturePath } }
-      );
-
-      res.redirect("/user");
+      try{
+        const uid = req.session.user.uid;
+        const profilePicturePath = `/images/${req.file.filename}`;
+  
+        await User.updateOne(
+          { uid },
+          { $set: { profilePicture: profilePicturePath } }
+        );
+  
+        res.redirect("/user");
+      }
+      catch(err){
+        res.send(err);
+      }
     } else {
       res.send("Access denied");
     }
