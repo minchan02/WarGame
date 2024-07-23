@@ -3,9 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const path = require("path");
-const { exec } = require("child_process");
 const db = require("./db.js");
-const { normalize } = require("path");
 const app = express();
 const server = http.createServer(app);
 
@@ -13,7 +11,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const hostname = "127.0.0.1";
+const hostname = "0.0.0.0";
 const port = 3005;
 
 let isAdmin = {};
@@ -27,45 +25,6 @@ let book = {
   "Hachette Book Group": { "Malcolm Gladwell": "Outliers" },
 };
 
-let newBook = {};
-
-function reload() {
-  var obj = {};
-  if (obj.__proto__.client) {
-    obj.__proto__.client = undefined;
-    console.log("client clear");
-  }
-  if (obj.__proto__.escapeFunction) {
-    obj.__proto__.escapeFunction = undefined;
-    console.log("escapeFunction clear");
-  }
-}
-
-const filePath = "./flag.txt";
-const checkInterval = 1000; // 1초마다 체크
-
-function checkFileOpened() {
-  const command = `inotifywait -e open --format '%w%f' ${filePath}`;
-
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing inotifywait: ${error.message}`);
-      return;
-    }
-
-    if (stdout) {
-      setTimeout(() => reload(), 1000);
-      console.log(`File opened: ${stdout.trim()}`);
-    }
-
-    if (stderr) {
-      console.error(`stderr: ${stderr}`);
-    }
-  });
-}
-
-setInterval(checkFileOpened, checkInterval);
-
 app.use(
   session({
     secret: "session_key",
@@ -75,11 +34,19 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.render("index", { book: book });
+  try {
+    res.render("index", { book: book });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.get("/login", (req, res) => {
-  res.render("login", { errorMessage: null });
+  try {
+    res.render("login", { errorMessage: null });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.post("/login", (req, res) => {
@@ -109,7 +76,11 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/register", (req, res) => {
-  res.render("register", { errorMessage: null });
+  try {
+    res.render("register", { errorMessage: null });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.post("/register", (req, res) => {
@@ -198,10 +169,10 @@ app.post("/admin", (req, res) => {
         }
       });
 
-      if (!newBook[bookPublisher]) {
-        newBook[bookPublisher] = {};
+      if (!book[bookPublisher]) {
+        book[bookPublisher] = {};
       }
-      newBook[bookPublisher][bookAuthor] = bookTitle;
+      book[bookPublisher][bookAuthor] = bookTitle;
 
       res.send(`
     <html>

@@ -24,11 +24,18 @@ db.serialize(() => {
       if (err) {
         console.error("Error creating table", err.message);
       } else {
-        console.log("Table created or already exists");
+        db.run(
+          `INSERT INTO users (uid, upw, name) VALUES (?, ?, ?)`,
+          ["admin", "{**Secret**}", "admin"],
+          (err) => {
+            if (err) {
+              console.log(err);
+            }
+          }
+        );
       }
     }
   );
 });
 
-// 데이터베이스 연결을 다른 모듈에서 사용할 수 있도록 export
 module.exports = db;
