@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Exhibition</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <h1>Report file upload to ADMIN </h1>
-    <form action="/report" method="post">
-        <label for="imageName">File name : </label>
-        <input type="text" name="name" id="name">
-        <input type="submit" value="submit">
-    </form>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Photo Exhibition</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/style.css') }}"
+		/>
+	</head>
+	<body>
+		<h1>Report file upload to ADMIN</h1>
+		<form action="/report" method="post">
+			<label for="imageName">http://127.0.0.1:8000/view/</label>
+			<input type="text" name="name" id="name" />
+			<input type="submit" value="submit" />
+		</form>
 
-    <button onclick="location.href='/'"> HOME </button>
-</body>
+		<button onclick="location.href='/'">HOME</button>
+	</body>
 </html>

@@ -3,14 +3,13 @@ from flask import Flask, request, render_template, send_from_directory
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 import urllib
-from lxml import etree,html
 
 app = Flask(__name__)
 
 UPLOAD_FOLDER = './static/images'
 ALLOW_EXTENSION = {'jpg', 'png', 'svg'}
 
-FLAG="FLAG{sample_flag}"
+FLAG="FLAG{sample_file}"
 
 
 def read_url(url, cookie={"name": "name", "value": "value"}):
@@ -28,12 +27,12 @@ def read_url(url, cookie={"name": "name", "value": "value"}):
             options.add_argument(_)
         driver = webdriver.Chrome(service=service, options=options)
         driver.implicitly_wait(3)
-        driver.set_page_load_timeout(3)
         driver.get("http://127.0.0.1:8000/")
         driver.add_cookie(cookie)
         driver.get(url)
     except Exception as e:
         driver.quit()
+        print(e)
         return False
     driver.quit()
     return True
@@ -61,14 +60,12 @@ def view_file(filename):
     if filename.lower().endswith('.svg'):
         try:
             filePath = os.path.join(UPLOAD_FOLDER, filename)
-        
-            parser = etree.XMLParser(no_network=False)
-            with open(filePath, 'r') as f:
-                tree = etree.parse(f, parser)
 
-            scriptTags = tree.xpath('//*[local-name()="script"]')
-            if scriptTags:
-                return '<script>alert("No script"); history.go(-1);</script>'
+            with open(filePath, 'r') as f:
+                for line in f:
+                    if 'script' in line:
+                        return '<script>alert("No script"); history.go(-1);</script>'
+        
         except:
             return '<script>alert("Error! Invalid FILE"); history.go(-1);</script>'
 
