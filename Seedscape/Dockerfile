@@ -5,10 +5,14 @@ WORKDIR /var/www/html
 EXPOSE 80
 
 COPY ./seed.txt /seed.txt
-COPY ./flag.txt /flag.txt
+COPY ./flag /flag
 
 COPY . /var/www/html/
 
-RUN rm /var/www/html/flag.txt
+RUN useradd -m user
+
+RUN chmod 111 /flag
+
+RUN chmod 444 /seed.txt
 
 EXPOSE 80

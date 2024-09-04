@@ -1,5 +1,5 @@
 <?php
-// seed length is 32
+// seed value is 32-length hex
 $seed = file_get_contents("/seed.txt");
 
 if(isset($_GET['pos'])){

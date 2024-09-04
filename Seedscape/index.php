@@ -20,7 +20,6 @@
 </html>
 
 <?php
-$flag = file_get_contents("/flag.txt");
 $seed = file_get_contents("/seed.txt");
 
 mt_srand($seed);
@@ -35,10 +34,19 @@ $users = [
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $password = $_POST['password'];
+    $file = $_POST['file'];
 
     if (isset($users[$id]) && $password === $users[$id]) {
         if ($id === "admin") {
-            echo "Great! $flag";
+            if (strlen($file) > 100){
+                echo "nono!"; // disallow php filter chain
+            }
+            else{
+                echo "Hello admin!";
+                if(isset($file)){
+                    include $file;
+                }
+            }
         }
         else{
             echo "Hello, Guest!";
