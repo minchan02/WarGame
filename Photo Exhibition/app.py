@@ -27,6 +27,7 @@ def read_url(url, cookie={"name": "name", "value": "value"}):
             options.add_argument(_)
         driver = webdriver.Chrome(service=service, options=options)
         driver.implicitly_wait(3)
+        driver.set_page_load_timeout(5)
         driver.get("http://127.0.0.1:8000/view")
         driver.add_cookie(cookie)
         driver.get(url)

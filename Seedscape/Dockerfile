@@ -7,7 +7,7 @@ EXPOSE 80
 COPY ./seed.txt /seed.txt
 COPY ./flag /flag
 
-COPY . /var/www/html/
+COPY ./src/* /var/www/html/
 
 RUN useradd -m user
 

@@ -17,4 +17,7 @@ RUN mv chromedriver-linux64/chromedriver /
 
 RUN pip install -r requirements.txt 
 
-CMD ["python3", "app.py"]
+COPY cleanup.sh /app/cleanup.sh
+RUN chmod +x /app/cleanup.sh
+
+CMD ["sh", "-c", "/app/cleanup.sh & python3 app.py"]
