@@ -162,12 +162,6 @@ app.post("/admin", (req, res) => {
         "+",
       ];
 
-      filterValues.forEach((filterValue) => {
-        if (bookTitle.toLowerCase().includes(filterValue)) {
-          res.send("Invalid bookTitle");
-          return;
-        }
-      });
 
       if (!book[bookPublisher]) {
         book[bookPublisher] = {};
