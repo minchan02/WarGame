@@ -9,6 +9,9 @@
 
 <h3>Dreamhack(https://dreamhack.io)</h3>
 1. Hello World!(WEB)<br>
-2. Dream Badge & Dream Badge:Revenge(WEB)<br>
-3. Predict(WEB)
-
+https://dreamhack.io/wargame/challenges/1445<br><br>
+2. Dream Badge & Dream Badge:Revenge(WEB) : 2024 Dreamhack UCC CTF<br>
+https://dreamhack.io/wargame/challenges/1583<br>
+https://dreamhack.io/wargame/challenges/1601<br><br>
+3. Predict(WEB)<br>
+https://dreamhack.io/wargame/challenges/1835
