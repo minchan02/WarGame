@@ -1,5 +1,5 @@
 <h1> My WarGame Challenges </h1>
-<h3>HAF(http://haf.world)</h3>
+<h3>HAF(http://haf.world) - now closed</h3>
 1. Photo Exhibition(WEB)<br>
 2. Log4you(WEB)<br>
 3. ProfileCard(WEB)<br>
