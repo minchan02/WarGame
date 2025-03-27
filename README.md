@@ -9,6 +9,6 @@
 
 <h3>Dreamhack(https://dreamhack.io)</h3>
 1. Hello World!(WEB)<br>
-2. Dream Badge(WEB)
-
+2. Dream Badge & Dream Badge:Revenge(WEB)<br>
+3. Predict(WEB)
 
