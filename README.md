@@ -17,10 +17,10 @@ https://dreamhack.io/wargame/challenges/1601<br><br>
 https://dreamhack.io/wargame/challenges/1835
 
 <h3>2025 Kookmin University CTF</h3>
-1. K_Robot<br>
-2. simple_login<br>
-3. kookmin_gallery<br>
-4. KMU_Profile<br>
+1. K_Robot(WEB)<br>
+2. simple_loginv(WEB)<br>
+3. kookmin_gallery(WEB)<br>
+4. KMU_Profile(WEB)<br>
 
 <h3>2025 Poka CTF</h3>
 1. simple memo(WEB)
