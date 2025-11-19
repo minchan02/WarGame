@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureApp - User Directory</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👥 Employee Directory</h1>
+            <p>Browse and search company employees</p>
+        </div>
+        
+        <div class="search-section">
+            <input type="text" id="searchInput" placeholder="Search employees...">
+            <button onclick="searchUsers()" class="btn">Search</button>
+        </div>
+        
+        <div id="usersGrid" class="users-grid">
+            <!-- Users will be loaded here -->
+        </div>
+        
+        <div class="report-section">
+            <h3>🚨 Report User Activity</h3>
+            <p>Report suspicious user behavior to administrators:</p>
+            <form id="reportForm">
+                <input type="text" id="reportUsername" placeholder="Username to report" required>
+                <textarea id="reportReason" placeholder="Describe the issue..." required></textarea>
+                <button type="submit" class="btn btn-warning">Send Report</button>
+            </form>
+            <p class="note">⚡ Reports trigger automatic admin review</p>
+        </div>
+        
+        <div class="actions">
+            <a href="/dashboard.html" class="btn">🏠 Back to Dashboard</a>
+        </div>
+        
+        <div id="message"></div>
+    </div>
+    
+    <script src="/js/main.js"></script>
+    <script>
+        let allUsers = [];
+        
+        // Load users on page load
+        async function loadUsers() {
+            try {
+                const response = await fetch('/api/users');
+                if (!response.ok) {
+                    window.location.href = '/index.html';
+                    return;
+                }
+                
+                const data = await response.json();
+                allUsers = data.users;
+                displayUsers(allUsers);
+            } catch (error) {
+                showMessage('Error loading users: ' + error.message, 'error');
+            }
+        }
+        
+        function displayUsers(users) {
+            const grid = document.getElementById('usersGrid');
+            grid.innerHTML = users.map(user => `
+                <div class="user-card" onclick="location.href='/profile/${user.username}'">
+                    <div class="avatar">${user.username.charAt(0).toUpperCase()}</div>
+                    <h3>${user.username}</h3>
+                    <p class="role">${user.role}</p>
+                    <p class="bio">${user.bio}</p>
+                    <p class="join-date">Joined: ${user.joinDate}</p>
+                </div>
+            `).join('');
+        }
+        
+        function searchUsers() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allUsers.filter(user => 
+                user.username.toLowerCase().includes(query) ||
+                user.bio.toLowerCase().includes(query)
+            );
+            displayUsers(filtered);
+        }
+        
+        // Report form handler
+        document.getElementById('reportForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const reportData = {
+                reportedUser: document.getElementById('reportUsername').value,
+                reason: document.getElementById('reportReason').value
+            };
+            
+            try {
+                const response = await fetch('/report-user', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(reportData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage('✅ Report sent! Admin will review the user profile.', 'success');
+                    document.getElementById('reportForm').reset();
+                } else {
+                    showMessage('❌ Failed to send report: ' + result.message, 'error');
+                }
+            } catch (error) {
+                showMessage('❌ Error: ' + error.message, 'error');
+            }
+        });
+        
+        // Load users when page loads
+        loadUsers();
+    </script>
+</body>
+</html>

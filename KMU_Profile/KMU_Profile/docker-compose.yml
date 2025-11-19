@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - FLAG=KMU{cache_p0is0ning_is_dangerous_HaHa}
+      - ADMIN_USER=admin
+      - ADMIN_PASSWORD=super_secret_admin_password_2025_haha
+      - APPURL=http://localhost:3000
+    restart: unless-stopped

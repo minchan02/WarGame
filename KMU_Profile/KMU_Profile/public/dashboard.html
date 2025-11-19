@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureApp - Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏠 Dashboard</h1>
+            <p id="welcomeMessage">Welcome back!</p>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card" onclick="location.href='/users.html'">
+                <h3>👥 User Directory</h3>
+                <p>Browse company employees</p>
+            </div>
+            
+            <div class="dashboard-card" onclick="viewProfile()">
+                <h3>👤 My Profile</h3>
+                <p>View your profile information</p>
+            </div>
+            
+            <div class="dashboard-card" id="adminCard" onclick="location.href='/admin'" style="display: none;">
+                <h3>⚙️ Admin Panel</h3>
+                <p>Administrative controls</p>
+            </div>
+            
+            <div class="dashboard-card" onclick="logout()">
+                <h3>🚪 Logout</h3>
+                <p>Sign out of your account</p>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <h3>🛡️ Security Notice</h3>
+            <p>Report any suspicious user activity through the User Directory.</p>
+        </div>
+    </div>
+    
+    <script src="/js/main.js"></script>
+    <script>
+        let currentUser = null;
+        
+        // Check if user is logged in and load user info
+        fetch('/api/users')
+            .then(response => {
+                if (!response.ok) {
+                    window.location.href = '/index.html';
+                    return;
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.users && data.users.length > 0) {
+                    // Find current user by checking session - we'll need to add an endpoint for this
+                    // For now, we'll make a simple request to get current user info
+                    getCurrentUser();
+                }
+            })
+            .catch(() => {
+                window.location.href = '/index.html';
+            });
+        
+        // Get current user information
+        async function getCurrentUser() {
+            try {
+                // We need to add this endpoint to the server to get current session user
+                const response = await fetch('/api/current-user');
+                if (response.ok) {
+                    const userData = await response.json();
+                    currentUser = userData.user;
+                    
+                    // Update welcome message
+                    document.getElementById('welcomeMessage').textContent = 
+                        `Welcome back, ${currentUser.username}!`;
+                    
+                    // Show admin card if user is admin
+                    if (currentUser.role === 'admin') {
+                        document.getElementById('adminCard').style.display = 'block';
+                    }
+                }
+            } catch (error) {
+                console.error('Error getting current user:', error);
+            }
+        }
+        
+        function viewProfile() {
+            if (currentUser && currentUser.username) {
+                window.location.href = `/profile/${currentUser.username}`;
+            } else {
+                // Fallback - try to get user info first
+                getCurrentUser().then(() => {
+                    if (currentUser && currentUser.username) {
+                        window.location.href = `/profile/${currentUser.username}`;
+                    } else {
+                        alert('Unable to load profile. Please try again.');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
