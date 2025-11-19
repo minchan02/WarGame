@@ -16,5 +16,8 @@ https://dreamhack.io/wargame/challenges/1601<br><br>
 3. Predict(WEB)<br>
 https://dreamhack.io/wargame/challenges/1835
 
+<h3>2025 Kookmin University CTF</h3>
+1. kookmin_gallery
+
 <h3>2025 Poka CTF</h3>
 1. simple memo(WEB)

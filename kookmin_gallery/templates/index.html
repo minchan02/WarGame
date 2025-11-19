@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Shiro Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-light: #f9f9fb;
+            --bg-dark: #1a1d24;
+            --card-bg-light: #ffffff;
+            --card-bg-dark: #242731;
+            --text-light: #333333;
+            --text-dark: #e9ecf2;
+            --shadow-light: 0 10px 18px rgba(0, 0, 0, 0.08);
+            --shadow-dark: 0 10px 18px rgba(0, 0, 0, 0.32);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 2rem 0 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .gallery {
+            width: 90%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            padding-bottom: 3rem;
+        }
+
+        figure {
+            margin: 0;
+            background: var(--card-bg-light);
+            border-radius: 12px;
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        figure:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        figcaption {
+            padding: 0.75rem 1rem 1rem;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--bg-dark);
+                color: var(--text-dark);
+            }
+            figure {
+                background: var(--card-bg-dark);
+                box-shadow: var(--shadow-dark);
+            }
+            figure:hover {
+                box-shadow: 0 14px 26px rgba(0, 0, 0, 0.48);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Shiro Gallery</h1>
+
+    <div class="gallery">
+        <figure>
+            <img src="{{ url_for('load_file_view') }}?filename=image1.jpg">
+            <figcaption>풀 위 흰둥이</figcaption>
+        </figure>
+        <figure>
+            <img src="{{ url_for('load_file_view') }}?filename=image2.jpg">
+            <figcaption>집지키는 흰둥이</figcaption>
+        </figure>
+        <figure>
+            <img src="{{ url_for('load_file_view') }}?filename=image3.jpg">
+            <figcaption>포동 흰둥이</figcaption>
+        </figure>
+        <figure>
+            <img src="{{ url_for('load_file_view') }}?filename=image4.jpg">
+            <figcaption>얼룩 흰둥이</figcaption>
+        </figure>
+        <figure>
+            <img src="{{ url_for('load_file_view') }}?filename=image5.jpg">
+            <figcaption>냠냠 흰둥이</figcaption>
+        </figure>
+        <figure>
+            <img src="{{ url_for('load_file_view') }}?filename=image6.jpg">
+            <figcaption>원투 흰둥이</figcaption>
+        </figure>
+    </div>
+</body>
+</html>
