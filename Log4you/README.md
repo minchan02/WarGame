@@ -1,1 +1,1 @@
-# Log4J 1-day 취약점
+Log4j 1-day challenge
