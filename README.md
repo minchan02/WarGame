@@ -46,3 +46,8 @@
 | 1   | simple memo    | WEB  |
 
 ---
+
+## Rewrite Wargame
+https://wargame.rewritelab.org/challenges
+- simple memo
+- suggestion
