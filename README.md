@@ -1,53 +1,74 @@
-# My Challenges
+# My CTF Challenges
+
+A collection of CTF and wargame challenges I have designed and published.
 
 ---
 
-## 🟣 HAF (http://haf.world) — *now closed*
+## HAF
 
-| No. | Challenge Name     | Type |
-|-----|--------------------|------|
-| 1   | Photo Exhibition   | WEB  |
-| 2   | Log4you            | WEB  |
-| 3   | ProfileCard        | WEB  |
-| 4   | BookStorage        | WEB  |
-| 5   | DiscordBot         | MISC |
-| 6   | Seedscape          | WEB  |
+**Platform** · [haf.world](http://haf.world)
+**Status** · Archived
 
----
+| Challenge        | Category |
+| ---------------- | -------- |
+| Photo Exhibition | Web      |
+| Log4you          | Web      |
+| ProfileCard      | Web      |
+| BookStorage      | Web      |
+| DiscordBot       | Misc     |
+| Seedscape        | Web      |
 
-## 🔵 Dreamhack (https://dreamhack.io)
-
-### Dreamhack Challenges
-
-| No. | Challenge Name                   | Type | Link |
-|-----|----------------------------------|------|------|
-| 1   | Hello World!                     | WEB  | https://dreamhack.io/wargame/challenges/1445 |
-| 2   | Dream Badge                      | WEB  | https://dreamhack.io/warggame/challenges/1583 |
-| 3   | Dream Badge: Revenge             | WEB  | https://dreamhack.io/wargame/challenges/1601 |
-| 4   | Predict                          | WEB  | https://dreamhack.io/wargame/challenges/1835 |
+<sub>6 challenges · 5 Web · 1 Misc</sub>
 
 ---
 
-## 🟡 2025 Kookmin University CTF
+## Dreamhack
 
-| No. | Challenge Name     | Type |
-|-----|--------------------|------|
-| 1   | K_Robot            | WEB  |
-| 2   | simple_loginv      | WEB  |
-| 3   | kookmin_gallery    | WEB  |
-| 4   | KMU_Profile        | WEB  |
+**Platform** · [dreamhack.io](https://dreamhack.io)
+
+| Challenge            | Category |                                                             |
+| -------------------- | -------- | ----------------------------------------------------------- |
+| Hello World!         | Web      | [Challenge →](https://dreamhack.io/wargame/challenges/1445) |
+| Dream Badge          | Web      | [Challenge →](https://dreamhack.io/wargame/challenges/1583) |
+| Dream Badge: Revenge | Web      | [Challenge →](https://dreamhack.io/wargame/challenges/1601) |
+| Predict              | Web      | [Challenge →](https://dreamhack.io/wargame/challenges/1835) |
+
+<sub>4 challenges · 4 Web</sub>
 
 ---
 
-## 🟢 2025 Poka CTF
+## Kookmin University CTF 2025
 
-| No. | Challenge Name | Type |
-|-----|----------------|------|
-| 1   | simple memo    | WEB  |
+| Challenge       | Category |
+| --------------- | -------- |
+| K_Robot         | Web      |
+| simple_loginv   | Web      |
+| kookmin_gallery | Web      |
+| KMU_Profile     | Web      |
+
+<sub>4 challenges · 4 Web</sub>
+
+---
+
+## Poka CTF 2025
+
+| Challenge   | Category |
+| ----------- | -------- |
+| simple memo | Web      |
+
+<sub>1 challenge · 1 Web</sub>
 
 ---
 
 ## Rewrite Wargame
-https://wargame.rewritelab.org/challenges
-- simple memo
-- suggestion
+
+**Platform** · [wargame.rewritelab.org](https://wargame.rewritelab.org/challenges)
+
+| Challenge   | Category |
+| ----------- | -------- |
+| simple memo | Web      |
+| suggestion  | Web      |
+
+<sub>2 challenges · 2 Web</sub>
+
+---
